@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Reactor Extension Library Sandbox</title>
+
+  <link rel="stylesheet" href="//assets.adobedtm.com/activation/reactor/spectrum/2.9.0/spectrum-light.css">
+
+  <link href="sandbox.css" rel="stylesheet" type="text/css">
+  <script src="container.js"></script>
+  <script src="engine.js"></script>
+</head>
+
+<body class="spectrum spectrum--light">
+  <div class="nav">
+    <a class="spectrum-Button spectrum-Button--secondary spectrum-Button--quiet" href="editor.html">Go to rule editor</a>
+    <a class="spectrum-Button spectrum-Button--secondary spectrum-Button--quiet" href="viewSandbox.html">Go to view sandbox</a>
+  </div>
+
+  <h1 class="coral-Heading coral-Heading--1">Reactor Extension Library Sandbox</h1>
+
+  Modify .sandbox/container.js and .sandbox/libSandbox.html then test the result here. Check out
+  <a href="https://www.npmjs.com/package/@adobe/reactor-sandbox#configuring-the-sandbox" target="_blank">documentation</a> on how to generate the `.sandbox` files.
+
+  <script>_satellite.pageBottom();</script>
+
+  <div id="shift"></div>
+  
+  <script>
+    var div1 = document.createElement("div");
+    var div2 = document.createElement("div");
+    var div3 = document.createElement("div");
+
+    div1.style.width = "100px";
+    div1.style.height = "100px";
+    div1.style.backgroundColor = "red";
+
+    div2.style.width = "200px";
+    div2.style.height = "200px";
+    div2.style.backgroundColor = "green";
+
+    div3.style.width = "300px";
+    div3.style.height = "300px";
+    div3.style.backgroundColor = "yellow";
+
+    setTimeout(function() {
+      document.getElementById("shift").appendChild(div1);
+    }, 1000);
+
+    setTimeout(function() {
+      document.getElementById("shift").insertBefore(div2, document.getElementById("shift").firstElementChild);
+    }, 3000);
+
+    setTimeout(function() {
+      document.getElementById("shift").insertBefore(div3, document.getElementById("shift").firstElementChild);
+    }, 8000);
+  </script>
+</body>
+
+</html>

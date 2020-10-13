@@ -1,0 +1,23 @@
+{
+  "name": "webvitalsextension",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "reactor-sandbox",
+    "package": "reactor-packager",
+    "scaffold": "reactor-scaffold",
+    "upload": "reactor-uploader --org-id=9D88879D5579828F7F000101@AdobeOrg --tech-account-id=473A0AFF5C498D430A495E7C@techacct.adobe.com --api-key=45ec3245e84d4d40978fd8da5eeefc3d --client-secret=357f276b-96f5-49e6-b9c0-6d94b383a73b"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@adobe/reactor-packager": "^4.0.1",
+    "@adobe/reactor-sandbox": "^10.9.0",
+    "@adobe/reactor-scaffold": "^2.1.3",
+    "@adobe/reactor-uploader": "^5.0.0"
+  },
+  "dependencies": {
+    "web-vitals": "^0.2.4"
+  }
+}

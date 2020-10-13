@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Web Vitals Configuration</title>
+    <style>
+      p.description {
+        font-size: 14px;
+        opacity: .8;
+      }
+
+      p.hint {
+        font-size: 10px;
+      }
+
+      .hide {
+        display: none;
+      }
+    </style>
+
+    <link rel="stylesheet" href="//assets.adobedtm.com/activation/reactor/coralui/3.16.0/css/coral.css">
+  </head>
+  <body>
+    <h1>WebVitals Configuration</h1>
+
+    <section>
+      <p class="description">Web Vitals is an initiative by Google to provide unified guidance for quality signals that are essential to delivering a great user experience on the web.</p>
+      <p class="description">Google has provided a number of tools over the years to measure and report on performance. Some developers are experts at using these tools, while others have found the abundance of both tools and metrics challenging to keep up with.</p>
+      <p class="description">Site owners should not have to be performance gurus in order to understand the quality of experience they are delivering to their users. The Web Vitals initiative aims to simplify the landscape, and help sites focus on the metrics that matter most, the Core Web Vitals.</p>
+      <p class="description">All Web Vital metrics in this extension are configured to when the specific value is present. Nevertheless we know that firing multiple server requests can be expensive. Therefore this extension can be configured to preserve the latest calculated metric values and saved as a cookie. In order to save server requests, in this setup you would usually retrieve the values from the cookie on the next page view request and connect it to the previous page. Therefore you need to save carry the page name to the next page view. This extension also implements a way to do so, whereas we know that this might be a common task and might be already set up in your property with a different extension or custom scripts.</p>
+    </section>
+
+    <section>
+      <div class="preserve">
+        <div class="coral-Form-fieldset">
+          <label class="coral-Form-fieldlabel" for="preserve">Preserve Metrics</label>
+          <input id="preserve" type="checkbox" />
+        </div>
+        <p class="description hint">When checked, Web Vital metrics will be saved to a cookie and can be retrieved with data elements</p>
+      </div>
+
+      <div class="metricsKey">
+        <div class="coral-Form-fieldset">
+          <label style="display:block" class="coral-Form-fieldlabel" for="metricsKey">Cookie Name</label>
+          <input class="coral-Textfield" id="metricsKey" type="text" />
+          <button id="metricsKeydataElement" class="coral-Button coral-Button--minimal coral-Button--medium">
+            <span class="coral-Icon coral-Icon--sizeS coral-Icon--data" role="img"></span>
+            <span class="coral-Button-label"></span>
+          </button>
+        </div>
+        <p class="description hint">Chose a key for the cookie that will preserve the web vitals metric data.</p>
+      </div>
+    </section>
+
+    <script src="https://assets.adobedtm.com/activation/reactor/extensionbridge/extensionbridge.min.js"></script>
+    <script>
+      var preserveSection = document.querySelector('div.preserve');
+      var metricsKeySection = document.querySelector('div.metricsKey');
+      var preserve = document.getElementById('preserve');
+      var metricsKey = document.getElementById('metricsKey');
+      var metricsKeydataElement = document.getElementById('metricsKeydataElement');
+
+      preserve.addEventListener('change', function(e) {
+        metricsKeySection.classList.toggle('hide');
+      });
+
+      metricsKeydataElement.addEventListener('click', function(e) {
+        window.extensionBridge.openDataElementSelector().then(function(value) {
+          metricsKey.value = value;
+        });
+      });
+
+      window.extensionBridge.register({
+        init: function(info) {
+          if(info.settings) {
+            preserve.checked = info.settings.preserve;
+            if(preserve.checked)
+              metricsKey.value = info.settings.metricsKey || "";
+          }
+
+          if(!preserve.checked)
+            metricsKeySection.classList.add('hide');
+        },
+
+        getSettings: function() {
+          return {
+            preserve: preserve.checked,
+            metricsKey: metricsKey.value,
+          }
+        },
+
+        validate: function() {
+          if(preserve.checked)
+            return !!metricsKey.value;
+          return!0;
+        }
+      });
+    </script>
+  </body>
+</html>

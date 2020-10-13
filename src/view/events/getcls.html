@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>CLS</title>
+    
+    <style>
+      p.description {
+        font-size: 14px;
+        opacity: .8;
+      }
+    </style>
+
+    <link rel="stylesheet" href="//assets.adobedtm.com/activation/reactor/spectrum/2.9.0/spectrum-light.css">
+  </head>
+  <body>
+    <h1>Get Cumulative Layout Shift (CLS)</h1>
+
+    <p class="description">Cumulative Layout Shift (CLS): measures visual stability. To provide a good user experience, pages should maintain a CLS of less than 0.1.</p>
+    <p class="description">This event will emit whenever a CLS score is calculated. Unlike other metrics, CLS continues to monitor changes for the entire lifespan of the page—including if the user returns to the page after it's been hidden/backgrounded. By default CLS will only be emitted once. You can change it to emit every time a CLS is calculated by ticking the checkbox.</p>
+    <p class="description">When this event is emitted, the context data will be appended to the event object as described in the <a href="https://github.com/GoogleChrome/web-vitals#metric">API</a>. The values will be available in a special property on the event object <pre>event.$webVitals</pre></p>
+    
+    <label for="reportAllChanges">Report all changes?</label>
+    <input id="reportAllChanges" type="checkbox" />
+
+    <script src="https://assets.adobedtm.com/activation/reactor/extensionbridge/extensionbridge.min.js"></script>
+    <script>
+      window.extensionBridge.register({
+        init: function(info) {
+          if (info.settings) {
+            document.getElementById("reportAllChanges").checked = info.settings.reportAllChanges;
+          }
+        },
+
+        getSettings: function() {
+          return {
+            reportAllChanges: document.getElementById("reportAllChanges").checked
+          }
+        },
+
+        validate: function() {
+          return!0;
+        }
+      });
+    </script>
+  </body>
+</html>

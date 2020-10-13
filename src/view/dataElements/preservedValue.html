@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Data Element</title>
+    <style>
+      p.description {
+        font-size: 14px;
+        opacity: .8;
+      }
+
+      p.hint {
+        font-size: 10px;
+      }
+
+      .hide {
+        display: none;
+      }
+    </style>
+
+    <link rel="stylesheet" href="//assets.adobedtm.com/activation/reactor/coralui/3.16.0/css/coral.css">
+  </head>
+  <body>
+    <h1>Preserved Value</h1>
+
+    <section>
+      <p class="description">Retrieve the value of a preserved value.</p>
+    </section>
+
+    <section>
+      <div class="cookieKey">
+        <div class="coral-Form-fieldset">
+          <label style="display:block" class="coral-Form-fieldlabel" for="cookieKey">Cookie Name</label>
+          <input class="coral-Textfield" id="cookieKey" type="text" />
+          <button id="cookieKeyDataElement" class="coral-Button coral-Button--minimal coral-Button--medium">
+            <span class="coral-Icon coral-Icon--sizeS coral-Icon--data" role="img"></span>
+            <span class="coral-Button-label"></span>
+          </button>
+        </div>
+        <p class="description hint">Chose a key for the cookie that holds the preserved value.</p>
+      </div>
+    </section>
+
+    <script src="https://assets.adobedtm.com/activation/reactor/extensionbridge/extensionbridge.min.js"></script>
+    <script>
+      var cookieKeySection = document.querySelector('div.cookieKey');
+      var cookieKey = document.getElementById('cookieKey');
+      var cookieKeyDataElement = document.getElementById('cookieKeyDataElement');
+
+      cookieKeyDataElement.addEventListener('click', function(e) {
+        window.extensionBridge.openDataElementSelector().then(function(value) {
+          cookieKey.value = value;
+        });
+      });
+
+      window.extensionBridge.register({
+        init: function(info) {
+          if(info.settings) {
+            cookieKey.value = info.settings.cookieKey;
+          }
+        },
+
+        getSettings: function() {
+          return {
+            cookieKey: cookieKey.value,
+          }
+        },
+
+        validate: function() {
+          return !!cookieKey.value;
+        }
+      });
+    </script>
+  </body>
+</html>

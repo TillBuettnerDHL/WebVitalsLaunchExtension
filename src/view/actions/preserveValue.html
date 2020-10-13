@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Action</title>
+    <style>
+      p.description {
+        font-size: 14px;
+        opacity: .8;
+      }
+
+      p.hint {
+        font-size: 10px;
+      }
+
+      .hide {
+        display: none;
+      }
+    </style>
+
+    <link rel="stylesheet" href="//assets.adobedtm.com/activation/reactor/coralui/3.16.0/css/coral.css">
+  </head>
+  <body>
+    <h1>Preseve Value</h1>
+
+    <section>
+      <p class="description">This action lets you preseve a value via cookie. Enter a cookie key and a value you want to preserve.</p>
+    </section>
+
+    <section>
+      <div class="cookieKey">
+        <div class="coral-Form-fieldset">
+          <label style="display:block" class="coral-Form-fieldlabel" for="cookieKey">Cookie Name</label>
+          <input class="coral-Textfield" id="cookieKey" type="text" />
+          <button id="cookieKeyDataElement" class="coral-Button coral-Button--minimal coral-Button--medium">
+            <span class="coral-Icon coral-Icon--sizeS coral-Icon--data" role="img"></span>
+            <span class="coral-Button-label"></span>
+          </button>
+        </div>
+        <p class="description hint">Chose a key for the cookie that will preserve the web vitals metric data.</p>
+      </div>
+
+      <div class="value">
+        <div class="coral-Form-fieldset">
+          <label style="display:block" class="coral-Form-fieldlabel" for="value">Value</label>
+          <input class="coral-Textfield" id="value" type="text" />
+          <button id="valueDataElement" class="coral-Button coral-Button--minimal coral-Button--medium">
+            <span class="coral-Icon coral-Icon--sizeS coral-Icon--data" role="img"></span>
+            <span class="coral-Button-label"></span>
+          </button>
+        </div>
+        <p class="description hint">Chose a value you want to preserve.</p>
+      </div>
+    </section>
+
+    <script src="https://assets.adobedtm.com/activation/reactor/extensionbridge/extensionbridge.min.js"></script>
+    <script>
+      var cookieKeySection = document.querySelector('div.cookieKey');
+      var valueSection = document.querySelector('div.value');
+      var cookieKey = document.getElementById('cookieKey');
+      var value = document.getElementById('value');
+      var cookieKeyDataElement = document.getElementById('cookieKeyDataElement');
+      var valueDataElement = document.getElementById('valueDataElement');
+
+      cookieKeyDataElement.addEventListener('click', function(e) {
+        window.extensionBridge.openDataElementSelector().then(function(value) {
+          cookieKey.value = value;
+        });
+      });
+
+      valueDataElement.addEventListener('click', function(e) {
+        window.extensionBridge.openDataElementSelector().then(function(value) {
+          value.value = value;
+        });
+      });
+
+      window.extensionBridge.register({
+        init: function(info) {
+          if(info.settings) {
+            cookieKey.value = info.settings.cookieKey;
+            value.value = info.settings.value;
+          }
+        },
+
+        getSettings: function() {
+          return {
+            cookieKey: cookieKey.value,
+            value: value.value,
+          }
+        },
+
+        validate: function() {
+          return !!(cookieKey.value && value.value);
+        }
+      });
+    </script>
+  </body>
+</html>

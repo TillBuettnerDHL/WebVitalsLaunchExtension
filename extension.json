@@ -1,0 +1,157 @@
+{
+  "displayName": "WebVitals",
+  "name": "webvitals",
+  "platform": "web",
+  "version": "1.0.0",
+  "description": "Web Vitals implementation",
+  "author": {
+    "name": "DHL Web Analytics"
+  },
+  "viewBasePath": "src/view/",
+  "actions": [
+    {
+      "displayName": "Preserve Value",
+      "name": "preserve-value",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {}
+      },
+      "libPath": "src/lib/actions/preserveValue.js",
+      "viewPath": "actions/preserveValue.html"
+    }
+  ],
+  "events": [
+    {
+      "displayName": "getFID",
+      "name": "getfid",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {}
+      },
+      "libPath": "src/lib/events/getfid.js",
+      "viewPath": "events/getfid.html"
+    },
+    {
+      "displayName": "getCLS",
+      "name": "getcls",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {}
+      },
+      "libPath": "src/lib/events/getcls.js",
+      "viewPath": "events/getcls.html"
+    },
+    {
+      "displayName": "getFCP",
+      "name": "getfcp",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {}
+      },
+      "libPath": "src/lib/events/getfcp.js",
+      "viewPath": "events/getfcp.html"
+    },
+    {
+      "displayName": "getLCP",
+      "name": "getlcp",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {}
+      },
+      "libPath": "src/lib/events/getlcp.js",
+      "viewPath": "events/getlcp.html"
+    },
+    {
+      "displayName": "getTTFB",
+      "name": "getttfb",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {}
+      },
+      "libPath": "src/lib/events/getttfb.js",
+      "viewPath": "events/getttfb.html"
+    }
+  ],
+  "configuration": {
+    "viewPath": "configuration/configuration.html",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "object",
+      "properties": {}
+    }
+  },
+  "dataElements": [
+    {
+      "displayName": "Preserved Value",
+      "name": "preserved-value",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {}
+      },
+      "libPath": "src/lib/dataElements/preservedValue.js",
+      "viewPath": "dataElements/preservedValue.html"
+    },
+    {
+      "displayName": "CLS",
+      "name": "cls",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {}
+      },
+      "libPath": "src/lib/dataElements/cls.js",
+      "viewPath": "dataElements/cls.html"
+    },
+    {
+      "displayName": "FCP",
+      "name": "fcp",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {}
+      },
+      "libPath": "src/lib/dataElements/fcp.js",
+      "viewPath": "dataElements/fcp.html"
+    },
+    {
+      "displayName": "FID",
+      "name": "fid",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {}
+      },
+      "libPath": "src/lib/dataElements/fid.js",
+      "viewPath": "dataElements/fid.html"
+    },
+    {
+      "displayName": "LCP",
+      "name": "lcp",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {}
+      },
+      "libPath": "src/lib/dataElements/lcp.js",
+      "viewPath": "dataElements/lcp.html"
+    },
+    {
+      "displayName": "TTFB",
+      "name": "ttfb",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {}
+      },
+      "libPath": "src/lib/dataElements/ttfb.js",
+      "viewPath": "dataElements/ttfb.html"
+    }
+  ]
+}

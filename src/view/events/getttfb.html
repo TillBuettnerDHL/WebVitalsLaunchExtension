@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>TTFB</title>
+    <style>
+      p.description {
+        font-size: 14px;
+        opacity: .8;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Get Time to first byte (TTFB)</h1>
+
+    <p class="description">The time it takes for a user's browser to receive the first byte of page content.</p>
+    <p class="description">This event emit as soon as the TTFB is available. This event will only be emitted once.</p>
+    <p class="description">When this event is emitted, the context data will be appended to the event object as described in the <a href="https://github.com/GoogleChrome/web-vitals#metric">API</a>. The values will be available in a special property on the event object <pre>event.$webVitals</pre></p>
+
+    <script src="https://assets.adobedtm.com/activation/reactor/extensionbridge/extensionbridge.min.js"></script>
+    <script>
+      window.extensionBridge.register({
+        init: function(info) {
+          if (info.settings) {}
+        },
+
+        getSettings: function() {
+        },
+
+        validate: function() {
+          return!0;
+        }
+      });
+    </script>
+  </body>
+</html>

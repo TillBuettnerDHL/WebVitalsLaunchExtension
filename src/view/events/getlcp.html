@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>LCP</title>
+    <style>
+      p.description {
+        font-size: 14px;
+        opacity: .8;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Get Largest Contentful Paint (LCP)</h1>
+
+    <p class="description">Largest Contentful Paint (LCP): measures loading performance. To provide a good user experience, LCP should occur within 2.5 seconds of when the page first starts loading.</p>
+    <p class="description">This event will emit whenever a LCP score is calculated. The function will be called any time a new largest-contentful-paint performance entry is dispatched, or once the final value of the metric has been determined. You can change it to emit every time a CLS is calculated by ticking the checkbox.</p>
+    <p class="description">When this event is emitted, the context data will be appended to the event object as described in the <a href="https://github.com/GoogleChrome/web-vitals#metric">API</a>. The values will be available in a special property on the event object <pre>event.$webVitals</pre></p>
+    
+    <label for="reportAllChanges">Report all changes?</label>
+    <input id="reportAllChanges" type="checkbox" />
+
+    <script src="https://assets.adobedtm.com/activation/reactor/extensionbridge/extensionbridge.min.js"></script>
+    <script>
+      window.extensionBridge.register({
+        init: function(info) {
+          if (info.settings) {
+            document.getElementById("reportAllChanges").checked = info.settings.reportAllChanges;
+          }
+        },
+
+        getSettings: function() {
+          return {
+            reportAllChanges: document.getElementById("reportAllChanges").checked
+          }
+        },
+
+        validate: function() {
+          return!0;
+        }
+      });
+    </script>
+  </body>
+</html>

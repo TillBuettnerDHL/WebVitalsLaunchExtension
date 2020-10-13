@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>FID</title>
+    <style>
+      p.description {
+        font-size: 14px;
+        opacity: .8;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Get First Input Delay (FID)</h1>
+
+    <p class="description">FID measures the time from when a user first interacts with a page (i.e. when they click a link, tap on a button, or use a custom, JavaScript-powered control) to the time when the browser is actually able to begin processing event handlers in response to that interaction.</p>
+    <p class="description">This event emit as soon as the FID is available. This event will only be emitted once.</p>
+    <p class="description">When this event is emitted, the context data will be appended to the event object as described in the <a href="https://github.com/GoogleChrome/web-vitals#metric">API</a>. The values will be available in a special property on the event object <pre>event.$webVitals</pre></p>
+
+    <script src="https://assets.adobedtm.com/activation/reactor/extensionbridge/extensionbridge.min.js"></script>
+    <script>
+      window.extensionBridge.register({
+        init: function(info) {
+          if (info.settings) {}
+        },
+
+        getSettings: function() {
+        },
+
+        validate: function() {
+          return!0;
+        }
+      });
+    </script>
+  </body>
+</html>

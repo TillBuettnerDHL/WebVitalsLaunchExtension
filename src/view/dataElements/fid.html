@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Data Element</title>
+    <style>
+      p.description {
+        font-size: 14px;
+        opacity: .8;
+      }
+
+      p.hint {
+        font-size: 10px;
+      }
+
+      .hide {
+        display: none;
+      }
+    </style>
+
+    <link rel="stylesheet" href="//assets.adobedtm.com/activation/reactor/coralui/3.16.0/css/coral.css">
+  </head>
+  <body>
+    <h1>FID</h1>
+
+    <section>
+      <p class="description">Retrieve the FID value either from current calculation or preserved value from previous page views.</p>
+      <p class="description">Tick the checkbox if the value should be received from the preserved storage.</p>
+    </section>
+
+    <section>
+      <div class="preserve">
+        <div class="coral-Form-fieldset">
+          <label class="coral-Form-fieldlabel" for="preserve">Get from preserved storage</label>
+          <input id="preserve" type="checkbox" />
+        </div>
+        <p class="description hint">When checked, the value will be retrieved from the preserved storage.</p>
+      </div>
+    </section>
+
+    <script src="https://assets.adobedtm.com/activation/reactor/extensionbridge/extensionbridge.min.js"></script>
+    <script>
+      var preserveSection = document.querySelector('div.preserve');
+      var preserve = document.getElementById('preserve');
+
+      window.extensionBridge.register({
+        init: function(info) {
+          if(info.settings) {
+            preserve.checked = info.settings.preserve;
+          }
+        },
+
+        getSettings: function() {
+          return {
+            preserve: preserve.checked,
+          }
+        },
+
+        validate: function() {
+          return!0;
+        }
+      });
+    </script>
+  </body>
+</html>
